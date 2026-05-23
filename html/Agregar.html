@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar</title>
+    <link rel="stylesheet" href="../estilos/styleadd.css">
+</head>
+<body>
+    <nav id="etiquetaCabeza">
+        <ul class="menuH">
+            <li><a href="../index.html">Inicio</a></li>
+            <li>
+                <a href="#">Operaciones</a>
+                <ul class="menuV">
+                    <li><a href="../php/solicitud.php">Solicitud</a></li>
+                    <li><a href="../html/Devolver.html">Devolución</a></li>
+                    <li><a href="../html/Agregar.html">Agregar</a></li>
+                </ul>
+            </li>
+            <li><a href="../php/Inventario.php">Inventario</a></li>
+            <li>
+                <a href="#">Contactos</a>
+                <ul class="menuV">
+                    <li><a href="https://www.facebook.com/profile.php?id=100063971260450">Desarrolladores</a></li>
+                    <li><a href="https://www.facebook.com/cetis99">Página Escuela</a></li>
+                </ul>
+            </li>
+            <li><a href="https://www.cetis99.edu.mx/plantel/informacion">¿Quienes somos?</a></li>
+        </ul>
+    </nav>
+    <h1 class="titulo">Agregar material o reactivo</h1> 
+    <div align="center">
+        <form id="form1" name="form1" method="POST" action="../php/AddDB.php">
+            <label for="Seleccionar"></label>
+            <input class="Sel" type="text" name="Seleccionar" id="Seleccionar" placeholder="Material o Reactivo"/>
+            <input class="Acept" type="submit" name="Aceptar" id="Aceptar" value="Aceptar" />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #8A2387;  
+    background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);
+    background: linear-gradient(to right, #F27121, #E94057, #8A2387); 
+    -webkit-text-stroke: black;
+       
+}
+
+nav{
+    max-width: 900px;
+    margin: auto;
+    background-color: #333;
+    font-size: 20px;
+    margin-top: 50px;
+}
+.menuH{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+.menuH > li > a{
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+.menuH > li:hover{
+    background-color: rgb(90, 24, 24);
+}
+.menuV{
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 200px;
+    background-color: rgba(0, 0, 0, .5);
+}
+.menuH li:hover .menuV{
+    display: block;
+}
+.menuV li:hover{
+    background-color: black;
+}
+.menuV li a{
+    display: block;
+    color: white;
+    padding: 10px 10px 10px 15px;
+    text-decoration: none;
+}
+
+.titulo{
+    text-align: center;
+    font-size: 50px;
+    color: transparent;
+    background-image: url(https://media.giphy.com/media/ZBQJXF4aS8u2owCAuC/giphy-downsized-large.gif);
+    background-position: center;
+    -webkit-background-clip: text;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SELECCION{
+    width: 20%;
+    height: 60%;
+    position: relative;
+    left: 2%;
+    border-radius: 10px;
+}
+
+.Seleccionar{
+    width: 110%;
+    background: #24303c;
+    left: 60%;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.titulos{
+    text-align: center;
+    margin-top: 5px;
+    margin: 10px;
+    color: white;
+    font-family: 'calibri';
+}
+
+.controles{
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #1489ff;
+    font-family: 'calibri';
+    font-size: 18px;
+    text-align: center;
+    color: white;
+}
+
+.Sel{
+    border-radius: 10px;
+    border-color: #1489ff;
+    padding: 10px;
+    background-color: #24303c;
+    color: #fff;
+    text-decoration-color: white;
+    box-shadow: black;
+    position: relative;
+}
+
+.Sel::after{
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    border-radius: 10px;
+    content: ' ';
+    background: #000;
+    width: 100%;
+    height: 100%;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.Acept{
+    border-radius: 10px;
+    padding: 10px;
+    background: #e1eec3;  
+    background: -webkit-linear-gradient(to right, #f05053, #e1eec3);  
+    background: linear-gradient(to right, #f05053, #e1eec3); 
+}
+
+.BtnAceptar{
+    width: 45%;
+    height: 50px;
+    border-radius: 10px;
+    background: #24303c;
+}
+
+.botonAceptar{
+    width: 100%;
+    height: 100%;
+    background: #1489ff;
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 7px 13px 37px black;
+}
+
+.botonAceptar:active{
+    width: 100%;
+    height: 100%;
+    background: #1489ff;
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    animation-name: animacionBotones;
+    animation-duration: 100ms;
+}
+
+.BtnBorar{
+    width: 45%;
+    height: 50px;
+    border-radius: 10px;
+    background: #24303c;
+    position: relative;
+    margin-left: auto;
+    top: -50px;
+}
+.botonesBorar{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    background: #1489ff;
+    color: white;
+    font-size: 16px;
+    box-shadow: 7px 13px 37px black;
+    cursor: pointer;
+}
+.botonesBorar:active{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    background: #1489ff;
+    color: white;
+    font-size: 16px;
+    box-shadow: 7px 13px 37px black;
+    animation-name:animacionBotones;
+    animation-duration: 100ms;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Solicitud</title>
+    <link rel="stylesheet" href="../estilos/style.css">
+  </head>
+  <body background="../imagenes/fondo.png">
+    <nav>
+      <ul class="menuH">
+          <li><a href="../index.html">Inicio</a></li>
+          <li>
+              <a href="#">Operaciones</a>
+              <ul class="menuV">
+                  <li><a href="../php/solicitud.php">Solicitud</a></li>
+                  <li><a href="../html/Devolver.html">Devolución</a></li>
+                  <li><a href="../html/Agregar.html">Agregar</a></li>
+              </ul>
+          </li>
+          <li><a href="../php/Inventario.php">Inventario</a></li>
+          <li>
+              <a href="#">Contactos</a>
+              <ul class="menuV">
+                  <li><a href="https://www.facebook.com/profile.php?id=100063971260450">Desarrolladores</a></li>
+                  <li><a href="https://www.facebook.com/cetis99">Página Escuela</a></li>
+              </ul>
+          </li>
+          <li><a href="https://www.cetis99.edu.mx/plantel/informacion">¿Quienes somos?</a></li>
+      </ul>
+  </nav>
+    <div class="cabeza">
+      <h1>LABORATORIOS DE QUÍMICA</h1>
+    </div>
+    <form name="form" id="form" method="POST" action="../php/OperacionSuma.php";>
+    <div class="FORMU">
+        <section class="formulario">
+          <h4 class="titulos">DEVOLUCIÓN </h4>
+          <input class="controles" type="text" name="ClaveM" id="ClaveM" placeholder="Ingrese la clave">
+          <input class="controles" type="number" name="Dev" id="Dev" placeholder="Ingrese la cantidad">
+          <div class="BtnAceptar">
+            <button class="botonAceptar">Aceptar</button>
+          </div>
+          <div class="BtnBorar">
+            <input class="botonesBorar" type="reset" value="Borrar">
+          </div>
+        </section>
+    </div>
+    </form>
+  </body>
+</html>
