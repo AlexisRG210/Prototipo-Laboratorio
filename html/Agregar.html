@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Existencias | Lab. Química</title>
+    <link rel="stylesheet" href="../estilos/style.css?v=4">
+    <link rel="stylesheet" href="../estilos/styleadd.css?v=4">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <nav>
+        <ul class="menuH">
+            <li><a href="../index.html"><i data-lucide="home" style="width:14px; height:14px; margin-right:4px;"></i> Inicio</a></li>
+            <li class="dropdown">
+                <a href="#"><i data-lucide="beaker" style="width:14px; height:14px; margin-right:4px;"></i> Operaciones</a>
+                <ul class="menuV">
+                    <div class="menuV-content">
+                        <li><a href="../php/solicitud.php">Solicitud</a></li>
+                        <li><a href="../html/Devolver.html">Devolución</a></li>
+                        <li><a href="../html/Agregar.html">Agregar</a></li>
+                    </div>
+                </ul>
+            </li>
+            <li><a href="../php/Inventario.php"><i data-lucide="clipboard-list" style="width:14px; height:14px; margin-right:4px;"></i> Inventario</a></li>
+            <li class="dropdown">
+                <a href="#"><i data-lucide="users" style="width:14px; height:14px; margin-right:4px;"></i> Contactos</a>
+                <ul class="menuV">
+                    <div class="menuV-content">
+                        <li><a href="https://www.facebook.com/profile.php?id=100063971260450" target="_blank">Desarrolladores</a></li>
+                        <li><a href="https://www.facebook.com/cetis99" target="_blank">Página Escuela</a></li>
+                    </div>
+                </ul>
+            </li>
+            <li><a href="https://www.cetis99.edu.mx/plantel/informacion" target="_blank"><i data-lucide="info" style="width:14px; height:14px; margin-right:4px;"></i> ¿Quiénes Somos?</a></li>
+        </ul>
+    </nav>
+
+    <div id="cuerpo">
+        <div class="cabeza">
+            <h1>REGISTRO DE ALTAS DE ALMACÉN</h1>
+        </div>
+
+        <div class="center-card">
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="switchTab('material-sec', this)">
+                    <i data-lucide="box" style="width:16px; height:16px;"></i> Materiales
+                </button>
+                <button class="tab-btn" onclick="switchTab('reactivo-sec', this)">
+                    <i data-lucide="test-tube" style="width:16px; height:16px;"></i> Reactivos
+                </button>
+            </div>
+
+            <div id="material-sec" class="form-section active">
+                <form name="formMat" method="POST" action="../php/AgregarMat.php">
+                    <div class="divFormulario" style="width:100%;">
+                        <section class="formulario">
+                            <h2 class="titulos">NUEVO MATERIAL</h2>
+                            <input class="controles" type="text" name="claveM" id="claveM" required placeholder="Clave del componente">
+                            <input class="controles" type="text" name="nombre" id="nombreM" required placeholder="Nombre o descripción">
+                            <input class="controles" type="text" name="presentacion" id="presentacion" required placeholder="Presentación (Ej: Caja/Pza)">
+                            <input class="controles" type="number" name="cantidad" id="cantidadM" required min="1" placeholder="Cantidad de stock inicial">
+                            
+                            <div class="BtnAceptar">
+                                <button type="submit" class="botonAceptar">Dar de Alta</button>
+                            </div>
+                            <div class="BtnBorar">
+                                <input class="botonesBorar" type="reset" value="Limpiar">
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+
+            <div id="reactivo-sec" class="form-section">
+                <form name="formReac" method="POST" action="../php/AgregarReac.php">
+                    <div class="divFormulario3" style="width:100%;">
+                        <section class="formulario2">
+                            <h2 class="titulos">NUEVO REACTIVO</h2>
+                            <input class="controle2" type="text" name="claveR" id="claveR" required placeholder="Clave del reactivo químico">
+                            <input class="controle2" type="text" name="nombre" id="nombreR" required placeholder="Nombre de la sustancia">
+                            <input class="controle2" type="number" name="envases" id="envases" required min="1" placeholder="Número de envases">
+                            <input class="controle2" type="number" name="cantidad" id="cantidadR" required min="1" placeholder="Volumen/Masa total">
+                            <input class="controle2" type="text" name="unidades" id="unidades" required placeholder="Unidad de medida (gr / ml)">
+                            <input class="controle2" type="date" name="fecha" id="fecha" required style="color:#ffffff;">
+                            
+                            <div class="BtnAceptar">
+                                <button type="submit" class="botonAceptar">Dar de Alta</button>
+                            </div>
+                            <div class="BtnBorar">
+                                <input class="botonesBorar" type="reset" value="Limpiar">
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function switchTab(sectionId, element) {
+            document.querySelectorAll('.form-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>

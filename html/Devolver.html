@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devolución de Materiales | Lab. Química</title>
+    <link rel="stylesheet" href="../estilos/style.css?v=2">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Ajuste específico para centrar estéticamente un formulario único en pantalla */
+        .center-form-container {
+            max-width: 450px;
+            margin: 40px auto 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="menuH">
+            <li>
+                <a href="../index.html">
+                    <i data-lucide="home" style="width:14px; height:14px; margin-right: 4px;"></i> Inicio
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#">
+                    <i data-lucide="beaker" style="width:14px; height:14px; margin-right: 4px;"></i> Operaciones
+                </a>
+                <ul class="menuV">
+                    <div class="menuV-content">
+                        <li><a href="../php/solicitud.php">Solicitud</a></li>
+                        <li><a href="../html/Devolver.html">Devolución</a></li>
+                        <li><a href="../html/Agregar.html">Agregar Reactivo</a></li>
+                    </div>
+                </ul>
+            </li>
+            <li>
+                <a href="../php/Inventario.php">
+                    <i data-lucide="clipboard-list" style="width:14px; height:14px; margin-right: 4px;"></i> Inventario
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#">
+                    <i data-lucide="users" style="width:14px; height:14px; margin-right: 4px;"></i> Contactos
+                </a>
+                <ul class="menuV">
+                    <div class="menuV-content">
+                        <li><a href="https://www.facebook.com/profile.php?id=100063971260450" target="_blank">Desarrolladores</a></li>
+                        <li><a href="https://www.facebook.com/cetis99" target="_blank">Página Escuela</a></li>
+                    </div>
+                </ul>
+            </li>
+            <li>
+                <a href="https://www.cetis99.edu.mx/plantel/informacion" target="_blank">
+                    <i data-lucide="info" style="width:14px; height:14px; margin-right: 4px;"></i> ¿Quiénes Somos?
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="cuerpo">
+        <div class="cabeza">
+            <h1>LABORATORIO DE QUÍMICA</h1>
+        </div>
+
+        <div class="center-form-container">
+            <form name="form" id="form" method="POST" action="../php/OperacionSuma.php">
+                <div class="divFormulario">
+                    <section class="formulario">
+                        <h2 class="titulos">DEVOLUCIÓN DE MATERIAL</h2>
+                        
+                        <input class="controles" type="text" name="ClaveM" id="ClaveM" required placeholder="Ingrese la clave del material o reactivo">
+                        <input class="controles" type="number" name="Dev" id="Dev" required min="1" placeholder="Ingrese la cantidad a regresar">
+                        
+                        <div class="BtnAceptar">
+                            <button type="submit" class="botonAceptar">Aceptar Devolución</button>
+                        </div>
+                        <div class="BtnBorar">
+                            <input class="botonesBorar" type="reset" value="Limpiar">
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

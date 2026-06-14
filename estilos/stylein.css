@@ -1,0 +1,318 @@
+/* ==========================================================================
+   🧪 ELSE SYSTEMS - PANEL DE SECCIÓN DE INVENTARIO CORE (stylein.css)
+   ========================================================================== */
+
+/* --- CONFIGURACIÓN GENERAL Y VARIABLES --- */
+:root {
+    --bg-main: #0b0f19;       /* Fondo oscuro profundo */
+    --bg-card: #131a26;       /* Tarjetas y contenedor de tablas */
+    --bg-input: #1c2635;      /* Barra de búsqueda e inputs */
+    --border-color: #24354f;  /* Color de bordes sutiles */
+    --emerald: #00e699;       /* Verde neón brillante */
+    --cyan: #00d9f5;          /* Cian para detalles interactivos */
+    --text-main: #ffffff;     /* Texto blanco puro */
+    --text-muted: #8fa0bc;    /* Texto gris/azul de lectura */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* --- NAVBAR SUPERIOR UNIFICADA --- */
+nav {
+    background-color: rgba(5, 7, 12, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.menuH {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: flex-end; 
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+}
+
+.menuH > li {
+    position: relative;
+}
+
+.menuH > li > a, .menuH > li > .nav-btn {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 20px 0;
+    transition: color 0.2s ease;
+}
+
+.menuH > li:hover > a, .menuH > li:hover > .nav-btn {
+    color: var(--emerald);
+}
+
+/* Submenú desplegable */
+.dropdown .menuV {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    background-color: transparent;
+    list-style: none;
+    display: none;
+    z-index: 110;
+}
+
+.dropdown:hover .menuV {
+    display: block;
+}
+
+.menuV-content {
+    background-color: #090d16;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    padding: 6px 0;
+    margin-top: 4px;
+}
+
+.menuV li a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.menuV li a:hover {
+    background-color: rgba(0, 230, 153, 0.06);
+    color: var(--emerald);
+    padding-left: 20px;
+}
+
+/* --- CONTENEDOR ESTRUCTURAL CENTRAL --- */
+#cuerpo {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 24px;
+    flex-grow: 1;
+}
+
+.cabeza h1 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 36px;
+    background: linear-gradient(to right, var(--emerald), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- BARRA DE BÚSQUEDA --- */
+.search-wrapper {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto 28px auto;
+    position: relative;
+}
+
+.modern-search {
+    width: 100%;
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px 16px 12px 42px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.modern-search:focus {
+    outline: none;
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 2px rgba(0, 217, 245, 0.1);
+}
+
+.search-icon-inside {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+}
+
+/* --- CONTROLADORES DE PESTAÑAS (TABS) --- */
+.inventory-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.tab-control-btn {
+    background-color: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    padding: 12px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.tab-control-btn:hover:not(.active) {
+    color: #ffffff;
+    background-color: #1c2635;
+}
+
+.tab-control-btn.active {
+    background-color: var(--emerald);
+    color: #0b0f19;
+    border-color: var(--emerald);
+    box-shadow: 0 4px 12px rgba(0, 230, 153, 0.2);
+}
+
+/* --- CUADRO VERDE DINÁMICO (CONTENEDOR GLOBAL DE LA TABLA) --- */
+.scrollable-table-card {
+    background-color: #0e3013; /* Fondo verde oscuro estético basado en tu boceto */
+    border: 2px solid #144d1e;
+    border-radius: 12px;
+    max-height: 420px;       /* Altura máxima con scrollbar vertical */
+    overflow-y: auto;        /* Scroll vertical activado */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilización de la barra de desplazamiento (Scrollbar) */
+.scrollable-table-card::-webkit-scrollbar {
+    width: 14px;
+}
+.scrollable-table-card::-webkit-scrollbar-track {
+    background: #102113;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.scrollable-table-card::-webkit-scrollbar-thumb {
+    background: #1c5225;
+    border: 3px solid #102113;
+    border-radius: 10px;
+}
+.scrollable-table-card::-webkit-scrollbar-thumb:hover {
+    background: var(--emerald);
+}
+
+/* --- TABLAS DENTRO DEL CUADRO VERDE --- */
+.premium-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13.5px;
+    display: none; /* Se muestran dinámicamente mediante JS */
+}
+
+.premium-table.active-table {
+    display: table;
+}
+
+/* Encabezado Fijo (Sticky Header) */
+.premium-table th {
+    position: sticky;
+    top: 0;
+    background-color: #102a14;
+    color: var(--emerald);
+    font-weight: 700;
+    padding: 14px 16px;
+    border-bottom: 2px solid #1a4420;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.premium-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(20, 77, 30, 0.4);
+    color: #e2f0e5;
+}
+
+.premium-table tbody tr:hover {
+    background-color: rgba(0, 230, 153, 0.04);
+}
+
+/* Vista Inicial Vacía */
+.empty-state-placeholder {
+    padding: 60px 20px;
+    text-align: center;
+    color: #5d8a64;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.empty-state-placeholder i {
+    color: #245e2d;
+}
+
+/* Mensaje cuando el buscador no encuentra datos */
+.empty-search-msg {
+    padding: 36px;
+    text-align: center;
+    color: #8cb893;
+    font-size: 14px;
+    display: none;
+}
+
+/* Badges de Existencias */
+.stock-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: monospace;
+}
+.stock-badge.red { background-color: rgba(255, 77, 109, 0.15); color: #ff4d6d; }
+.stock-badge.green { background-color: rgba(0, 230, 153, 0.15); color: var(--emerald); }
