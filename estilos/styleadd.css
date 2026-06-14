@@ -1,202 +1,311 @@
-body{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+/* ==========================================================================
+   🧪 ELSE SYSTEMS - CONTROL DE INVENTARIO ABSOLUTO (stylein.css)
+   ========================================================================== */
+
+/* --- RESET Y VARIABLES GLOBAL DE ENTORNO OSCURO --- */
+:root {
+    --bg-main: #0b0f19;       /* Fondo oscuro profundo */
+    --bg-card: #131a26;       /* Fondo de las tarjetas y tablas */
+    --bg-input: #1c2635;      /* Fondo de la barra de búsqueda */
+    --border-color: #24354f;  /* Color de bordes sutiles */
+    --emerald: #00e699;       /* Verde neón brillante */
+    --emerald-hover: #00b377; /* Verde hover */
+    --cyan: #00d9f5;          /* Cian para detalles SaaS */
+    --text-main: #ffffff;     /* Texto blanco puro */
+    --text-muted: #8fa0bc;    /* Texto gris/azul de lectura */
+}
+
+* {
     margin: 0;
-    background: #8A2387;  
-    background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);
-    background: linear-gradient(to right, #F27121, #E94057, #8A2387); 
-    -webkit-text-stroke: black;
-       
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-nav{
-    max-width: 900px;
-    margin: auto;
-    background-color: #333;
-    font-size: 20px;
-    margin-top: 50px;
-}
-.menuH{
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-}
-.menuH > li > a{
-    display: block;
-    padding: 15px 20px;
-    color: white;
-    text-decoration: none;
-}
-.menuH > li:hover{
-    background-color: rgb(90, 24, 24);
-}
-.menuV{
-    position: absolute;
-    display: none;
-    list-style: none;
-    width: 200px;
-    background-color: rgba(0, 0, 0, .5);
-}
-.menuH li:hover .menuV{
-    display: block;
-}
-.menuV li:hover{
-    background-color: black;
-}
-.menuV li a{
-    display: block;
-    color: white;
-    padding: 10px 10px 10px 15px;
-    text-decoration: none;
-}
-
-.titulo{
-    text-align: center;
-    font-size: 50px;
-    color: transparent;
-    background-image: url(https://media.giphy.com/media/ZBQJXF4aS8u2owCAuC/giphy-downsized-large.gif);
-    background-position: center;
-    -webkit-background-clip: text;
-}
-
-.contenedor{
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* --- NAVBAR SUPERIOR INTEGRADA --- */
+header, nav {
+    background-color: rgba(5, 7, 12, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.menuH {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: flex-end; 
+    gap: 28px;
+    list-style: none;
     align-items: center;
 }
 
-.SELECCION{
-    width: 20%;
-    height: 60%;
-    position: relative;
-    left: 2%;
-    border-radius: 10px;
-}
-
-.Seleccionar{
-    width: 110%;
-    background: #24303c;
-    left: 60%;
-    padding: 30px;
-    margin-top: 50px;
-    border-radius: 10px;
-    color: white;
-    box-shadow: 7px 13px 37px #000;
-}
-
-.titulos{
-    text-align: center;
-    margin-top: 5px;
-    margin: 10px;
-    color: white;
-    font-family: 'calibri';
-}
-
-.controles{
-    width: 100%;
-    background: #24303c;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #1489ff;
-    font-family: 'calibri';
-    font-size: 18px;
-    text-align: center;
-    color: white;
-}
-
-.Sel{
-    border-radius: 10px;
-    border-color: #1489ff;
-    padding: 10px;
-    background-color: #24303c;
-    color: #fff;
-    text-decoration-color: white;
-    box-shadow: black;
+.menuH > li {
     position: relative;
 }
 
-.Sel::after{
+.menuH > li > a, .menuH > li > .nav-btn {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 20px 0;
+    transition: color 0.2s ease;
+}
+
+.menuH > li:hover > a, .menuH > li:hover > .nav-btn {
+    color: var(--emerald);
+}
+
+/* --- SUBMENÚS DESPLEGABLES (DROPDOWN V) --- */
+.dropdown {
+    position: relative;
+}
+
+.menuV {
     position: absolute;
-    top: 10px;
-    left: 0px;
-    border-radius: 10px;
-    content: ' ';
-    background: #000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    background-color: transparent;
+    list-style: none;
+    display: none;
+    z-index: 110;
+}
+
+.dropdown:hover .menuV {
+    display: block;
+}
+
+.menuV-content {
+    background-color: #090d16;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    padding: 6px 0;
+    margin-top: 4px;
+}
+
+.menuV li a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.menuV li a:hover {
+    background-color: rgba(0, 230, 153, 0.06);
+    color: var(--emerald);
+    padding-left: 20px;
+}
+
+/* --- ESTRUCTURA DEL CONTENEDOR CENTRAL --- */
+#cuerpo {
+    max-width: 1200px;
     width: 100%;
-    height: 100%;
-    filter: blur(10px);
-    z-index: -1;
+    margin: 0 auto;
+    padding: 32px 24px;
+    flex-grow: 1;
 }
 
-.Acept{
-    border-radius: 10px;
-    padding: 10px;
-    background: #e1eec3;  
-    background: -webkit-linear-gradient(to right, #f05053, #e1eec3);  
-    background: linear-gradient(to right, #f05053, #e1eec3); 
+.cabeza h1 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 32px;
+    background: linear-gradient(to right, var(--emerald), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.BtnAceptar{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
-}
-
-.botonAceptar{
+/* --- BARRA DE BÚSQUEDA --- */
+.search-wrapper {
+    max-width: 600px;
     width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    box-shadow: 7px 13px 37px black;
-}
-
-.botonAceptar:active{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    animation-name: animacionBotones;
-    animation-duration: 100ms;
-}
-
-.BtnBorar{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
+    margin: 0 auto 36px auto;
     position: relative;
-    margin-left: auto;
-    top: -50px;
 }
-.botonesBorar{
+
+.modern-search {
     width: 100%;
-    height: 100%;
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 16px 14px 44px;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modern-search:focus {
+    outline: none;
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(0, 217, 245, 0.15);
+}
+
+.search-icon-inside {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+}
+
+/* --- BOTONES DE PESTAÑAS (TABS) --- */
+.inventory-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 36px;
+}
+
+.tab-control-btn {
+    background-color: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    padding: 12px 26px;
+    font-size: 13.5px;
+    font-weight: 600;
     border-radius: 10px;
-    border: none;
-    background: #1489ff;
-    color: white;
-    font-size: 16px;
-    box-shadow: 7px 13px 37px black;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
 }
-.botonesBorar:active{
+
+.tab-control-btn:hover:not(.active) {
+    color: #ffffff;
+    background-color: #162030;
+}
+
+.tab-control-btn.active {
+    background-color: var(--cyan);
+    color: #0b0f19;
+    border-color: var(--cyan);
+    box-shadow: 0 4px 14px rgba(0, 217, 245, 0.25);
+}
+
+/* --- CONTROL DE VISTAS DE PESTAÑAS --- */
+.tab-panel-view {
+    display: none;
+}
+
+.tab-panel-view.active {
+    display: block;
+    animation: smoothFadeIn 0.25s ease-out forwards;
+}
+
+.stock-status-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 32px 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.stock-status-title.out-of-stock { color: #ff4d6d; }
+.stock-status-title.in-stock { color: var(--emerald); }
+
+/* --- CONTENEDOR DE TABLAS CON SCROLL INTERNO --- */
+.scrollable-table-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    max-height: 380px; 
+    overflow-y: auto;   
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    margin-bottom: 28px;
+}
+
+/* --- MODELADO DE TABLAS --- */
+.premium-table {
     width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: none;
-    background: #1489ff;
-    color: white;
-    font-size: 16px;
-    box-shadow: 7px 13px 37px black;
-    animation-name:animacionBotones;
-    animation-duration: 100ms;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13.5px;
+}
+
+/* Encabezado Inmóvil Superior (Sticky Header) */
+.premium-table th {
+    position: sticky;
+    top: 0;
+    background-color: #16222f; 
+    color: var(--text-muted);
+    font-weight: 600;
+    padding: 14px 16px;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.premium-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid rgba(36, 53, 79, 0.4);
+    color: var(--text-main);
+}
+
+.premium-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+/* Mensajes de error */
+.empty-search-msg {
+    padding: 36px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    display: none;
+}
+
+/* --- STOCK BADGES --- */
+.stock-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: monospace;
+}
+.stock-badge.red { background-color: rgba(255, 77, 109, 0.1); color: #ff4d6d; border: 1px solid rgba(255, 77, 109, 0.15); }
+.stock-badge.green { background-color: rgba(0, 230, 153, 0.1); color: var(--emerald); border: 1px solid rgba(0, 230, 153, 0.15); }
+
+@keyframes smoothFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
 }

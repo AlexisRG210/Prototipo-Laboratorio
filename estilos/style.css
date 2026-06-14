@@ -1,691 +1,253 @@
-*{
+/* --- CONFIGURACIÓN GENERAL --- */
+:root {
+    --bg-main: #0b0f19;
+    --bg-card: #131a26;
+    --bg-input: #1c2635;
+    --border-color: #24354f;
+    --emerald: #00e699;
+    --emerald-hover: #00b377;
+    --cyan: #00d9f5;
+    --text-main: #ffffff;
+    --text-muted: #8fa0bc;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
 }
-.body header{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 0;
-    background-color:rgb(4, 61, 49);
-    background-size: 1918px 855;
-    background-position-x: left;
-    background-position-y: 100px;
-    align-content: center;
-}
-nav{
-    max-width: 900px;
-    margin: auto;
-    background-color: #333;
-    font-size: 20px;
-    margin-top: 50px;
-}
-.menuH{
-    list-style: none;
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
 }
-.menuH > li > a{
-    display: block;
-    padding: 15px 20px;
-    color: white;
+
+/* --- NAVBAR SUPERIOR UNIFICADA --- */
+nav {
+    background-color: #05070cbf;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.menuH {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 28px;
+    list-style: none;
+}
+
+.menuH > li > a {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
     text-decoration: none;
+    padding: 8px 0;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
 }
-.menuH > li:hover{
-    background-color: rgb(90, 24, 24);
+
+.menuH > li:hover > a {
+    color: var(--emerald);
 }
-.menuV{
+
+.menuV {
     position: absolute;
-    display: none;
+    background-color: #090d16;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 6px 0;
     list-style: none;
-    width: 200px;
-    background-color: rgba(0, 0, 0, .5);
+    display: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
-.menuH li:hover .menuV{
+
+.menuH li:hover .menuV {
     display: block;
 }
-.menuV li:hover{
-    background-color: black;
-}
-.menuV li a{
+
+.menuV li a {
     display: block;
-    color: white;
-    padding: 10px 10px 10px 15px;
+    padding: 8px 16px;
+    color: var(--text-muted);
     text-decoration: none;
+    font-size: 13px;
 }
 
-
-.divFormulario{
-    width: 20%;
-    height: 60%;
-    background: black;
-    position: relative;
-    left: 2%;
-    border-radius: 10px;
+.menuV li a:hover {
+    background-color: rgba(0, 230, 153, 0.06);
+    color: var(--emerald);
 }
 
-.formulario{
+/* --- CONTENEDOR DE LA PÁGINA --- */
+#cuerpo {
+    max-width: 1280px;
     width: 100%;
-    background: #24303c;
-    padding: 30px;
-    margin-top: 50px;
-    border-radius: 10px;
-    color: white;
-    box-shadow: 7px 13px 37px #000;
+    margin: 0 auto;
+    padding: 32px 24px;
+    flex-grow: 1;
 }
 
-.titulos{
+.cabeza h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
     text-align: center;
-    margin-top: 5px;
-    margin: 10px;
-    color: white;
-    font-family: 'calibri';
+    margin-bottom: 32px;
+    background: linear-gradient(to right, var(--emerald), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.controles{
+/* --- REJILLA AUTOMÁTICA DE 3 COLUMNAS (ADÍOS TOP NEGATIVOS) --- */
+.formQ {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+/* Estilo de los 3 Contenedores */
+.divFormulario, .divFormulario2, .divFormulario3 {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.titulos {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--emerald);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 230, 153, 0.1);
+    padding-bottom: 8px;
+}
+
+/* --- CONTROLES DE INPUTS --- */
+.controles, .controle2 {
     width: 100%;
-    background: #24303c;
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.controles:focus, .controle2:focus {
+    outline: none;
+    border-color: var(--emerald);
+    box-shadow: 0 0 0 2px rgba(0, 230, 153, 0.1);
+}
+
+::placeholder {
+    color: #5a6e85;
+}
+
+/* --- BOTONES MODERNOS --- */
+.BtnAceptar, .BtnReset, .BtnBorar {
+    display: inline-block;
+    width: 48%;
+    margin-bottom: 12px;
+}
+
+.BtnReset, .BtnBorar {
+    float: right;
+}
+
+.botonAceptar, .botonReset, .botonesBorar {
+    width: 100%;
     padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #1489ff;
-    font-family: 'calibri';
-    font-size: 18px;
-    text-align: center;
-    color: white;
-}
-
-
-
-
-
-
-
-
-
-/* boton reguistrar */
-
-.btoRegistrar{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
-}
-.btnRegistrar{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 7px 13px 37px black;
-}
-
-.btnRegistrar:active{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
     border: none;
-    animation-name: animacionBotones;
-    animation-duration: 100ms;
-}
-@keyframes animacionBotones {
-    0%{
-        width: 100%;
-        height: 100%;}
-    50%{ 
-        width: 97%;
-        height: 95%;
-        position: relative;
-        left: 1%;
-        top: 1%;
-    }
-    100%{
-        width: 95%;
-        height: 90%;
-        position: relative;
-        left: 2%;
-        top: 4%;
-    }
-    
+    transition: all 0.2s;
 }
 
-.nuestroContactoXD{
-    text-align: right;
-    margin-top: 10px;
+.botonAceptar {
+    background-color: var(--emerald);
+    color: #0b0f19;
 }
 
-.nuestroContactoXD a{
-    color: green;
-    text-decoration: none;
+.botonAceptar:hover {
+    background-color: var(--emerald-hover);
+    box-shadow: 0 4px 12px rgba(0, 230, 153, 0.2);
 }
 
-.nuestroContactoXD a:hover{
-    color: white;
-    text-decoration: underline;
+.botonReset, .botonesBorar {
+    background-color: #1c2635;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-.divFormulario2{
-    width: 30%;
-    background: #24303c;
-    position: relative;
-    left: 25%;
-    top:-350px;
-    border-radius: 10px;
+.botonReset:hover, .botonesBorar:hover {
+    background-color: #24354f;
 }
 
-.formulario2{
+/* Botón de Generar Vale */
+.botonaceptar {
     width: 100%;
-    height: 100%;
-    background: #24303c;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 7px 13px 37px black;
-}
-.controle2{
-    width: 100%;
-    background: #24303c;
-    padding: 8px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #1489ff;
-    font-family: 'calibri';
-    font-size: 18px;
-    text-align: center;
-    color: white;
-}
-
-
-
-.cabeza{
-    width: 90%;
-    color: white;
-    background: #24303c;
-    border-radius: 10px;
-    text-align: center;
-    padding: 40px;
-    margin: auto;
-    margin-top: 10px;
-    box-shadow: 7px 13px 37px black;
-    font-family: 'calibri';
-    font-size: 18px;
-}
-
-
-
-
-/* boton Aceptar */
-
-
-
-.botones2{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: none;
-    background: #1489ff;
-    color: white;
-    font-size: 16px;
+    background: linear-gradient(to right, #00d9f5, #00b377);
+    color: #0b0f19;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 7px 13px 37px black;
-}
-.botones2:active{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
     border: none;
-    background: #1489ff;
-    color: white;
-    font-size: 16px;
-    animation-name: animacionBotones;
-    animation-duration: 100ms;
-}
-::placeholder{
-    color: white;
+    margin-top: 12px;
+    transition: opacity 0.2s;
 }
 
-
-
-
-/* boton Borrar  */
-
-.BtnBorar{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
-    position: relative;
-    margin-left: auto;
-    top: -50px;
+.botonaceptar:hover {
+    opacity: 0.9;
 }
-.botonesBorar{
+
+/* --- VISTA DE IMPRESIÓN DEL VALE (MANTENIENDO TU HOJA) --- */
+.divVale {
     width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: none;
-    background: #1489ff;
-    color: white;
-    font-size: 16px;
-    box-shadow: 7px 13px 37px black;
-    cursor: pointer;
-}
-.botonesBorar:active{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: none;
-    background: #1489ff;
-    color: white;
-    font-size: 16px;
-    box-shadow: 7px 13px 37px black;
-    animation-name:animacionBotones;
-    animation-duration: 100ms;
-}
-
-
-
-
-
-
-
-/* lista de materiales */
-
-.lista{
-    width: 40%;
-    height: 400px;
+    max-width: 19cm;
     background: white;
-    position: relative;
-    left: 53%;
-    top: -750px;
-    border-radius: 10px;
-    box-shadow: 7px 13px 37px black;
-}
-.lista h4{
     color: black;
-    
+    margin: 30px auto;
+    padding: 2cm;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
-.tabla{
-    width: 90%;
-    background: #24303c;
-    position: relative;
-    top: 10px;
-    margin: auto;
-    color:  white;
-    font-family: 'calibri';
-    border-radius: 5px;
-}
-.tabla td{
-    text-align: center;
-    background: gray;
-    border: none;
-    border-radius: 5px;
-    padding: 4px;
-}
-.tabla th{
-    text-align: center;
-    border: 1px solid #1489ff;
-    border-radius: 5px;
-    padding: 5px;
-}
+.h5Titulos { text-align: center; font-weight: 700; margin-bottom: 6px; }
+.divDatos { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+.divDatos div { border-bottom: 1px solid black; padding-bottom: 4px; }
 
+.tablaVale { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.tablaVale th, .tablaVale td { border: 1px solid black; padding: 8px; text-align: center; }
 
-.divFormulario3{
-    background: #24303c;
-    width: 30%;
-    height: 425px;
-    position: relative;
-    top: -770px;
-    left: 60%;
-    border-radius: 10px;
-}
-
-.BtnAceptar{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
-}
-
-.botonAceptar{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    box-shadow: 7px 13px 37px black;
-}
-
-.botonAceptar:active{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    animation-name: animacionBotones;
-    animation-duration: 100ms;
-}
-
-.Enviar{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
-    text-align: center;
-}
-
-.formulario3{
-    display: flex;
-}
-
-.Enviary{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    box-shadow: 7px 13px 37px black;
-}
-
-.Enviary:active{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    animation-name: animacionBotones;
-    animation-duration: 100ms;
-}
-
-.Regresar{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
-    text-align: center;   
-}
-
-.Regresary{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    box-shadow: 7px 13px 37px black;
-}
-
-.Regresary:active{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    animation-name: animacionBotones;
-    animation-duration: 100ms;
-}
-.BotonesEn{
-
-    align-content: center;
-}
-.BotonesEnvio{
-    display: flex;
-}
-.Enviar{
-    size: 10px;
-    width: 10%;
-}
-.Regresar{
-    justify-content: space-between;
-    width: 10%;
-}
-
-.BtnReset{
-    width: 45%;
-    height: 50px;
-    border-radius: 10px;
-    background: #24303c;
-    position: relative;
-    top: -50px;
-    left: 50%;
-}
-
-.botonReset{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    box-shadow: 7px 13px 37px black;
-}
-
-.botonReset:active{
-    width: 100%;
-    height: 100%;
-    background: #1489ff;
-    border-radius: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    animation-name: animacionBotones;
-    animation-duration: 100ms;
-}
-
-.botonaceptar{
-    background: #24303c;
-    padding: 15px;
-    border-radius: 7px;
-    border: none;
-    color: white;
-    font-size: 16px;
-}
-
-.formQ{
-    background: none;
-    width: 100%;
-    height: 550px;
-}
-
-.divVale{
-    width: 19cm;
-    font-size: 20px;
-    background: white;
-    margin: auto;
-    position: relative;
-    top: 50px;
-    height: auto;
-}
-
-
-.tablaVale{
-    width: 100%;
-    border: 1px solid black;
-}
-.tablaVale th, td{
-   border: 1px solid black;
-   text-align: center;
-   font-family: 'calibri';
-   border-collapse: collapse;
-}
-
-.np{
-    width: 2cm;
-}
-
-.materialSolicitado{
-    width: 8.5cm;
-}
-
-.cantidad{
-    width: 1.5cm;
-}
-
-.medidas{
-    width: 1.5cm;
-}
-
-.reactivos{
-    width: 4.5cm;
-}
-
-
-
-.divFecha{
-    width: 195px;
-    height: 18px;
-}
-
-.divFecha p{
-    width: 3.5cm;
-    position: relative;
-    left: 62px;
-    top: -24px;
-    border: none;
-    border-bottom: 1px solid black;
-    font-family: 'calibri';
-    text-align: center;
-}
-.divFecha h5{
-    width: 1cm;
-    font-family: 'calibri';
-}
-
-
-.divGrupo{
-    width: 214px;
-    position: relative;
-    left: 200px;
-    top: -17px;
-    height: 19px;
-}
-.divGrupo p{
-    width: 1cm;
-    position: relative;
-    left: 62px;
-    top: -24px;
-    border: none;
-    border-bottom: 1px solid black;
-    font-family: 'calibri';
-    text-align: center;
-}
-.divGrupo h5{
-    width: 1cm;
-    font-family: 'calibri';
-}
-
-.divMateria{
-    width: 345px;
-    height: 19px;
-    position: relative;
-    top: -12px;
-}
-.divMateria input{
-    width: 7cm;
-    position: relative;
-    left: 80px;
-    top: -24px;
-    border: none;
-    border-bottom: 1px solid black;
-    font-family: 'calibri';
-}
-.divMateria h5{
-    width: 1.5cm;
-    font-family: 'calibri';
-}
-
-.divDocente{
-    width: 242px;
-    position: relative;
-    left: 350px;
-    top: -30px;
-    height: 19px;
-}
-.divDocente input{
-    width: 4.5cm;
-    position: relative;
-    left: 70px;
-    top: -24px;
-    border: none;
-    border-bottom: 1px solid black;
-    font-family: 'calibri';
-}
-.divDocente h5{
-    font-family: 'calibri';
-}
-
-.divNombrePractica{
-
-    width: 365px;
-    height: 18px;
-    position: relative;
-    top: -20px;
-}
-.divNombrePractica p{
-    width: 4cm;
-    position: relative;
-    left: 138px;
-    top: -24px;
-    border: none;
-    border-bottom: 1px solid black;
-    text-align: center;
-}
-.divNombrePractica h5{
-    font-family: 'calibri';
-}
-.h5Titulos{
-    text-align: center;
-    margin-bottom: 10px;
-    font-family: 'calibri';
-}
-
-.divDatos{
-    width: 600px;
-    position: relative;
-    left: 50px;
-}
-
-.btnImprimir{
-    position: relative;
-    left: 15px;
-    font-family: 'calibri';
-    font-size: 15px;
-}
-@media print{
-    @page{
-        size: 148mm 210mm;
-        margin: 0;
-    }
+@media print {
+    body { background: white; color: black; }
+    nav, .cabeza, .formQ { display: none !important; }
+    .divVale { box-shadow: none; margin: 0; padding: 0; }
 }

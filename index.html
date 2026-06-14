@@ -1,36 +1,102 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Lab. Química</title>
-<link rel="stylesheet" href="estilos/stylep.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab. Química | CETIS 99</title>
+    <link rel="stylesheet" href="estilos/stylep.css?=v2">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-        
-        <nav>
-            <ul class="menuH">
-                <li><a href="https://www.cetis99.edu.mx/">Inicio</a></li>
-                <li>
-                    <a href="#">Operaciones</a>
-                    <ul class="menuV">
-                        <li><a href="php/solicitud.php">Solicitud</a></li>
-                        <li><a href="html/Devolver.html">Devolución</a></li>
-                        <li><a href="html/Agregar.html">Agregar</a></li>
-                    </ul>
-                </li>
-                <li><a href="php/Inventario.php">Inventario</a></li>
-                <li>
-                    <a href="#">Contactos</a>
-                    <ul class="menuV">
-                        <li><a href="https://www.facebook.com/profile.php?id=100063971260450">Desarrolladores</a></li>
-                        <li><a href="https://www.facebook.com/cetis99">Página Escuela</a></li>
-                    </ul>
-                </li>
-                <li><a href="https://www.cetis99.edu.mx/plantel/informacion">¿Quienes somos?</a></li>
-            </ul>
-        </nav>
 
-        <h1>
-            Laboratorio De Química.
-        </h1>
+    <header>
+        <div class="navbar-container">
+            <div class="brand">
+                <i data-lucide="flask-conical"></i>
+                <span class="brand-title">LAB-QUÍMICA</span>
+            </div>
+
+            <nav>
+                <ul class="menuH">
+                    <li>
+                        <a href="https://www.cetis99.edu.mx/">
+                            <i data-lucide="home" style="width:14px; height:14px;"></i> Inicio
+                        </a>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <button class="nav-btn">
+                            <i data-lucide="beaker" style="width:14px; height:14px;"></i> Operaciones <i data-lucide="chevron-down" style="width:10px; height:10px;"></i>
+                        </button>
+                        <ul class="menuV">
+                            <div class="menuV-content">
+                                <li><a href="php/solicitud.php">Solicitud</a></li>
+                                <li><a href="html/Devolver.html">Devolución</a></li>
+                                <li><a href="html/Agregar.html">Agregar Reactivo</a></li>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="php/Inventario.php">
+                            <i data-lucide="clipboard-list" style="width:14px; height:14px;"></i> Inventario
+                        </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <button class="nav-btn">
+                            <i data-lucide="users" style="width:14px; height:14px;"></i> Contactos <i data-lucide="chevron-down" style="width:10px; height:10px;"></i>
+                        </button>
+                        <ul class="menuV">
+                            <div class="menuV-content">
+                                <li><a href="https://www.facebook.com/profile.php?id=100063971260450" target="_blank">Desarrolladores</a></li>
+                                <li><a href="https://www.facebook.com/cetis99" target="_blank">Página Escuela</a></li>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="https://www.cetis99.edu.mx/plantel/informacion" target="_blank">
+                            <i data-lucide="info" style="width:14px; height:14px;"></i> ¿Quiénes Somos?
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero-main">
+        <div class="glow-effect"></div>
+
+        <div class="hero-content">
+            <span class="badge">Prototipo V0.3.1 - CETIS No. 99</span>
+            
+            <h1>
+                Sistema de Gestión <br>para 
+                <span class="gradient-text">Laboratorio de Química</span>
+            </h1>
+
+            <p class="hero-description">
+                Control de inventarios, gestión automatizada de vales de reactivos y bitácoras de materiales en tiempo real para la comunidad académica.
+            </p>
+
+            <div class="actions-container">
+                <a href="php/solicitud.php" class="btn-primary">
+                    <i data-lucide="file-plus" style="width:16px; height:16px;"></i> Crear Solicitud
+                </a>
+                <a href="php/Inventario.php" class="btn-secondary">
+                    <i data-lucide="database" style="width:16px; height:16px;"></i> Ver Inventario
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Laboratorio de Química - Desarrollado para fines académicos.
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

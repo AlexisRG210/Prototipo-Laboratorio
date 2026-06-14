@@ -1,61 +1,302 @@
-body{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-image: url(../imagenes/index.jpg);
-    background-size: 90pc;
-
+/* --- VARIABLES CORPORATIVAS (CIBER-LAB) --- */
+:root {
+    --bg-main: #0b0f19;       /* Fondo oscuro profundo de la segunda imagen */
+    --bg-navbar: #05070cbf;   /* Navbar con transparencia oscura */
+    --bg-dropdown: #090d16;   /* Menú flotante sólido */
+    --border-color: #161f30;  /* Bordes sutiles oscuros */
+    --text-main: #ffffff;     /* Texto blanco brillante */
+    --text-muted: #8fa0bc;    /* Texto gris/azul legible */
+    --text-footer: #4a5a70;   /* Texto del pie de página */
+    --emerald: #00e699;       /* Verde neón brillante para botones y detalles */
+    --emerald-hover: #00b377; /* Verde hover */
+    --cyan: #00d9f5;          /* Cian para degradados */
 }
 
-nav{
-    max-width: 900px;
-    margin: auto;
-    background-color: #333;
-    font-size: 20px;
-    margin-top: 50px;
+/* --- RECONSTRUCCIÓN DE ELEMENTOS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
-.menuH{
-    list-style: none;
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
     display: flex;
-    justify-content: space-around;
-}
-.menuH > li > a{
-    display: block;
-    padding: 15px 20px;
-    color: white;
-    text-decoration: none;
-}
-.menuH > li:hover{
-    background-color: rgb(90, 24, 24);
-}
-.menuV{
-    position: absolute;
-    display: none;
-    list-style: none;
-    width: 200px;
-    background-color: rgba(0, 0, 0, .5);
-}
-.menuH li:hover .menuV{
-    display: block;
-}
-.menuV li:hover{
-    background-color: black;
-}
-.menuV li a{
-    display: block;
-    color: white;
-    padding: 10px 10px 10px 15px;
-    text-decoration: none;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
+/* --- NAVBAR SUPERIOR --- */
+header {
+    background-color: var(--bg-navbar);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
 
-h1{
-    font-family: sans-serif;
-    text-align: center;
-    margin-top: 200px;
-    font-size: 100px;
-    font-weight: 800;
-    -webkit-text-stroke: 4px black;
-    color: transparent;
-    background-image: url(../gifs/index.gif);
-    background-position: center;
+.navbar-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Identidad Visual (Logo) */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand i {
+    color: var(--emerald);
+    font-size: 22px;
+}
+
+.brand-title {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    background: linear-gradient(to right, var(--emerald), var(--cyan));
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Menú Horizontal */
+.menuH {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+}
+
+.menuH > li > a, .menuH > li > .nav-btn {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+}
+
+.menuH > li:hover > a, .menuH > li:hover > .nav-btn {
+    color: var(--emerald);
+}
+
+/* --- SUBMENÚS (DROPDOWN VERTICAL CORREGIDO) --- */
+.dropdown {
+    position: relative;
+}
+
+.menuV {
+    position: absolute;
+    /* 🔥 CAMBIO: Lo pegamos exactamente al borde inferior del header (ajusta según necesites) */
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* 🔥 TRUCO PRO: Añadimos un padding superior invisible. 
+       Esto crea un "puente" térmico para el mouse. Aunque visualmente haya espacio, 
+       para el navegador sigues estando dentro del menú. */
+    padding-top: 12px; 
+    
+    width: 190px;
+    background-color: transparent; /* El contenedor base es invisible para el puente */
+    list-style: none;
+    
+    /* Cambiamos display:none por propiedades de opacidad para poder meterle transición de espera */
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -8px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+/* 🔥 NUEVO: Contenedor interno real con el color oscuro, para que el padding superior no se pinte */
+.menuV-content {
+    background-color: var(--bg-dropdown);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    padding: 6px 0;
+}
+
+/* Mostrar al pasar el mouse con efecto suave que no se corta de golpe */
+.dropdown:hover .menuV {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+.menuV li a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.menuV li a:hover {
+    background-color: rgba(0, 230, 153, 0.06);
+    color: var(--emerald);
+    padding-left: 20px;
+}
+
+/* --- CONTENEDOR HERO CENTRAL --- */
+.hero-main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 60px 24px;
+}
+
+/* Efecto Glow de la segunda imagen */
+.glow-effect {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 230, 153, 0.08) 0%, rgba(0, 217, 245, 0.03) 50%, transparent 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(60px);
+    z-index: -1;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.badge {
+    display: inline-block;
+    color: var(--emerald);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background-color: rgba(0, 230, 153, 0.08);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 230, 153, 0.15);
+    margin-bottom: 28px;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: var(--text-main);
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 42px; }
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--emerald), #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 0 auto 36px auto;
+}
+
+/* --- CONTENEDOR DE ACCIONES (BOTONES) --- */
+.actions-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    .actions-container { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-secondary { width: 100%; max-width: 280px; }
+}
+
+.btn-primary {
+    background-color: var(--emerald);
+    color: #0b0f19;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--emerald-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 230, 153, 0.25);
+}
+
+.btn-secondary {
+    background-color: #131a26;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #1a2436;
+    color: #ffffff;
+}
+
+/* --- FOOTER PIE DE PÁGINA --- */
+footer {
+    background-color: #05070c;
+    border-top: 1px solid var(--border-color);
+    padding: 16px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-footer);
+}
+
+/* --- ANIMACIÓN FLUIDA --- */
+@keyframes fadeInMenu {
+    from { opacity: 0; transform: translate(-50%, -4px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
 }
